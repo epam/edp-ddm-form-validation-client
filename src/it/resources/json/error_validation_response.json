@@ -1,0 +1,33 @@
+{
+  "name": "ValidationError",
+  "details": [
+    {
+      "message": "Field name is required",
+      "level": "error",
+      "path": [
+        "name"
+      ],
+      "context": {
+        "validator": "required",
+        "setting": true,
+        "key": "name",
+        "label": "Повна назва лабораторії або ПІБ ФОП",
+        "value": ""
+      }
+    },
+    {
+      "message": "Field edrpou is required",
+      "level": "error",
+      "path": [
+        "edrpou"
+      ],
+      "context": {
+        "validator": "required",
+        "setting": true,
+        "key": "edrpou",
+        "label": "Код ЄДРПОУ або РНОКПП",
+        "value": ""
+      }
+    }
+  ]
+}
