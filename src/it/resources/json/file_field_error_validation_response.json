@@ -1,0 +1,6 @@
+{
+  "traceId": "traceId",
+  "code": 422,
+  "message": "The type of the downloaded file is not supported.",
+  "details": []
+}

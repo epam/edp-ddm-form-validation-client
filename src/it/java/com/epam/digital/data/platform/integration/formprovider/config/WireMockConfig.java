@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
 public class WireMockConfig {
 
   @Bean
-  public WireMockServer restClientWireMock(@Value("${form-management-provider.url}") String urlStr)
+  public WireMockServer restClientWireMock(@Value("${form-submission-validation.url}") String urlStr)
       throws MalformedURLException {
     var url = new URL(urlStr);
     var wireMockServer = new WireMockServer(wireMockConfig().port(url.getPort()));
