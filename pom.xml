@@ -12,8 +12,8 @@
   </parent>
 
   <groupId>com.epam.digital.data.platform</groupId>
-  <artifactId>ddm-form-provider-client</artifactId>
-  <version>1.6.0</version>
+  <artifactId>ddm-form-validation-client</artifactId>
+  <version>1.8.0</version>
 
   <properties>
     <java.version>11</java.version>

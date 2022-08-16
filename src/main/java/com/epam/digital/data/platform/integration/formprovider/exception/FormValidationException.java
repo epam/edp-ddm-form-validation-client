@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class BadRequestException extends RuntimeException {
+public class FormValidationException extends RuntimeException {
 
   private final FormErrorListDto errors;
 }
