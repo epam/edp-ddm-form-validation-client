@@ -13,7 +13,7 @@
 
   <groupId>com.epam.digital.data.platform</groupId>
   <artifactId>ddm-form-validation-client</artifactId>
-  <version>1.8.0</version>
+  <version>1.8.1</version>
 
   <properties>
     <java.version>11</java.version>

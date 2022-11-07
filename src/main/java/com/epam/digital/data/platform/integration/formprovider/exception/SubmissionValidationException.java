@@ -16,7 +16,7 @@
 
 package com.epam.digital.data.platform.integration.formprovider.exception;
 
-import com.epam.digital.data.platform.integration.formprovider.dto.FormErrorListDto;
+import com.epam.digital.data.platform.starter.errorhandling.dto.ValidationErrorDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Getter
 @RequiredArgsConstructor
-public class FormValidationException extends RuntimeException {
+public class SubmissionValidationException extends RuntimeException {
 
-  private final FormErrorListDto errors;
+  private final ValidationErrorDto errors;
 }

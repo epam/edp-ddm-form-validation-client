@@ -1,6 +1,13 @@
 {
   "traceId": "traceId",
-  "code": 422,
-  "message": "The type of the downloaded file is not supported.",
-  "details": []
+  "code": "VALIDATION_ERROR",
+  "details": {
+    "errors": [
+      {
+        "value": "",
+        "field": "file",
+        "message": "The type of the downloaded file is not supported."
+      }
+    ]
+  }
 }
