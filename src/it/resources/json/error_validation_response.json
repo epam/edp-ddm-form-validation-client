@@ -1,33 +1,18 @@
 {
-  "name": "ValidationError",
-  "details": [
-    {
-      "message": "Field name is required",
-      "level": "error",
-      "path": [
-        "name"
-      ],
-      "context": {
-        "validator": "required",
-        "setting": true,
-        "key": "name",
-        "label": "Повна назва лабораторії або ПІБ ФОП",
-        "value": ""
+  "traceId": "6bf6c1c1d713ec2f",
+  "code": "VALIDATION_ERROR",
+  "details": {
+    "errors": [
+      {
+        "value": "",
+        "field": "name",
+        "message": "Field name is required"
+      },
+      {
+        "value": "",
+        "field": "edrpou",
+        "message": "Field name is required"
       }
-    },
-    {
-      "message": "Field edrpou is required",
-      "level": "error",
-      "path": [
-        "edrpou"
-      ],
-      "context": {
-        "validator": "required",
-        "setting": true,
-        "key": "edrpou",
-        "label": "Код ЄДРПОУ або РНОКПП",
-        "value": ""
-      }
-    }
-  ]
+    ]
+  }
 }

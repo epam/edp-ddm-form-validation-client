@@ -28,8 +28,7 @@ import com.epam.digital.data.platform.integration.formprovider.config.WireMockCo
 import com.epam.digital.data.platform.integration.formprovider.dto.FileDataValidationDto;
 import com.epam.digital.data.platform.integration.formprovider.dto.FormDataValidationDto;
 import com.epam.digital.data.platform.integration.formprovider.dto.FormFieldListValidationDto;
-import com.epam.digital.data.platform.integration.formprovider.exception.FileFieldValidationException;
-import com.epam.digital.data.platform.integration.formprovider.exception.FormValidationException;
+import com.epam.digital.data.platform.integration.formprovider.exception.SubmissionValidationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
@@ -74,13 +73,13 @@ public class FormValidationClientIT {
     var formDataDto = FormDataValidationDto.builder().data(new LinkedHashMap<>()).build();
     mockFormDataValidation(422, formDataDto, errorValidationResponse);
 
-    var ex = assertThrows(FormValidationException.class,
+    var ex = assertThrows(SubmissionValidationException.class,
         () -> formValidationClient.validateFormData("formId", formDataDto));
 
     assertThat(ex).isNotNull();
-    assertThat(ex.getErrors().getErrors().size()).isEqualTo(2);
-    assertThat(ex.getErrors().getErrors().get(0).getField()).isEqualTo("name");
-    assertThat(ex.getErrors().getErrors().get(1).getField()).isEqualTo("edrpou");
+    assertThat(ex.getErrors().getDetails().getErrors().size()).isEqualTo(2);
+    assertThat(ex.getErrors().getDetails().getErrors().get(0).getField()).isEqualTo("name");
+    assertThat(ex.getErrors().getDetails().getErrors().get(1).getField()).isEqualTo("edrpou");
   }
 
   @Test
@@ -106,13 +105,13 @@ public class FormValidationClientIT {
         .documentKey("documentKey").build();
     mockFileFieldValidation(422, fileDataDto, errorValidationResponse);
 
-    var ex = assertThrows(FileFieldValidationException.class,
+    var ex = assertThrows(SubmissionValidationException.class,
         () -> formValidationClient.validateFileField("formId", "fieldKey", fileDataDto));
 
     assertThat(ex).isNotNull();
-    assertThat(ex.getFileFieldError().getTraceId()).isEqualTo("traceId");
-    assertThat(ex.getFileFieldError().getCode()).isEqualTo("422");
-    assertThat(ex.getFileFieldError().getMessage()).isEqualTo(
+    assertThat(ex.getErrors().getTraceId()).isEqualTo("traceId");
+    assertThat(ex.getErrors().getCode()).isEqualTo("VALIDATION_ERROR");
+    assertThat(ex.getErrors().getDetails().getErrors().get(0).getMessage()).isEqualTo(
         "The type of the downloaded file is not supported.");
   }
 
@@ -124,11 +123,11 @@ public class FormValidationClientIT {
     var errorValidationResponse = "{\"message\": \"Task form does not have fields with names field1, field2\"}";
     mockValidateFormFields(422, requestBody, errorValidationResponse);
 
-    var ex = assertThrows(FileFieldValidationException.class,
+    var ex = assertThrows(SubmissionValidationException.class,
         () -> formValidationClient.checkFieldNames("formId", requestBody));
 
     assertThat(ex).isNotNull();
-    assertThat(ex.getFileFieldError().getMessage()).isEqualTo(
+    assertThat(ex.getErrors().getMessage()).isEqualTo(
         "Task form does not have fields with names field1, field2");
   }
 

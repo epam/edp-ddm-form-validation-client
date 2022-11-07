@@ -16,10 +16,8 @@
 
 package com.epam.digital.data.platform.integration.formprovider.decoder;
 
-import com.epam.digital.data.platform.integration.formprovider.dto.FileFieldErrorDto;
-import com.epam.digital.data.platform.integration.formprovider.dto.FormErrorListDto;
-import com.epam.digital.data.platform.integration.formprovider.exception.FileFieldValidationException;
-import com.epam.digital.data.platform.integration.formprovider.exception.FormValidationException;
+import com.epam.digital.data.platform.integration.formprovider.exception.SubmissionValidationException;
+import com.epam.digital.data.platform.starter.errorhandling.dto.ValidationErrorDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import feign.Response;
 import feign.Util;
@@ -43,15 +41,12 @@ public class FormValidationErrorDecoder implements ErrorDecoder {
   @SneakyThrows
   @Override
   public Exception decode(String methodKey, Response response) {
-    if (response.status() == 422 && methodKey.contains("validateFormData")) {
-      return new FormValidationException(objectMapper
-          .readValue(Util.toByteArray(response.body().asInputStream()), objectMapper.constructType(
-              FormErrorListDto.class)));
-    }
     if (response.status() == 422) {
-      return new FileFieldValidationException(objectMapper
-          .readValue(Util.toByteArray(response.body().asInputStream()), objectMapper.constructType(
-              FileFieldErrorDto.class)));
+      return new SubmissionValidationException(
+          objectMapper.readValue(
+              Util.toByteArray(response.body().asInputStream()),
+              objectMapper.constructType(ValidationErrorDto.class)
+          ));
     }
     return errorDecoder.decode(methodKey, response);
   }
