@@ -29,4 +29,5 @@ import lombok.NoArgsConstructor;
 public class FormDataValidationDto {
 
   private LinkedHashMap<String, Object> data;
+  private String processInstanceId;
 }
