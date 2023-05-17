@@ -23,7 +23,7 @@
     <ddm-starter-error-handler.version>1.6.0.1</ddm-starter-error-handler.version>
     <ddm-form-data-storage.version>1.6.0.1</ddm-form-data-storage.version>
     <mapstruct.version>1.4.2.Final</mapstruct.version>
-    <feign-annotation-error-decoder.version>1.4.0</feign-annotation-error-decoder.version>
+    <feign-annotation-error-decoder.version>11.7</feign-annotation-error-decoder.version>
     <wiremock.version>2.27.2</wiremock.version>
     <spring.cloud.version>2021.0.0</spring.cloud.version>
 
